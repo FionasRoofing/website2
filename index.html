@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fionas Roofing LLC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --brand-blue: #1c3f5f;
+      --brand-blue-dark: #14293e;
+      --bg-light: #f5f5f7;
+      --text-dark: #1f2933;
+      --card-bg: #ffffff;
+      --accent: #fbbf24;
+      --success-green: #16a34a;
+      --success-light: #dcfce7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* Sticky navigation */
+    .nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #ffffff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-left img {
+      width: 180px;
+      height: auto;
+      display: block;
+    }
+
+    .nav-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-brand-text span:first-child {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--brand-blue-dark);
+    }
+
+    .nav-brand-text span:last-child {
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--brand-blue);
+    }
+
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background-color: var(--brand-blue);
+      color: #ffffff !important; /* FIXED */
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background-color: var(--brand-blue-dark);
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-dark));
+      color: #ffffff;
+      padding: 70px 16px 80px;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      margin: 0 0 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero p {
+      margin: 0 0 20px;
+      font-size: 1rem;
+      max-width: 480px;
+      opacity: 0.95;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-cta-primary {
+      padding: 12px 22px;
+      border-radius: 999px;
+      background-color: #ffffff;
+      color: var(--brand-blue);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.98rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .hero-cta-primary:hover {
+      background-color: #f3f4f6;
+    }
+
+    .hero-cta-secondary {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .hero-cta-secondary span {
+      font-weight: 600;
+    }
+
+    .hero-side {
+      background-color: rgba(15,23,42,0.35);
+      border-radius: 16px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .hero-side h2 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .hero-side p {
+      margin: 0 0 6px;
+      font-size: 0.9rem;
+    }
+
+    .hero-side .label {
+      font-weight: 600;
+    }
+
+    /* Main layout */
+    main {
+      max-width: 1100px;
+      margin: 32px auto 48px;
+      padding: 0 16px;
+    }
+
+    section {
+      margin-bottom: 28px;
+    }
+
+    .section-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 22px 20px 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    h2.section-title {
+      margin: 0 0 14px;
+      font-size: 1.4rem;
+      color: var(--brand-blue-dark);
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .service-card {
+      background-color: #f9fafb;
+      border-radius: 10px;
+      padding: 14px 14px 16px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .service-card h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      color: var(--brand-blue-dark);
+    }
+
+    .service-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    /* About */
+    .about-text {
+      font-size: 0.96rem;
+      color: #374151;
+      max-width: 720px;
+    }
+
+    /* Contact */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.5fr);
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    .contact-details p {
+      margin: 4px 0;
+      font-size: 0.95rem;
+    }
+
+    .label {
+      font-weight: 600;
+    }
+
+    /* Success banner */
+    .success-banner {
+      display: none;
+      background-color: var(--success-light);
+      border: 1px solid var(--success-green);
+      color: var(--success-green);
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 9px 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-family: inherit;
+      font-size: 0.9rem;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--brand-blue);
+      box-shadow: 0 0 0 1px rgba(28,63,95,0.25);
+    }
+
+    button[type="submit"] {
+      margin-top: 4px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background-color: var(--brand-blue);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      justify-self: flex-start;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+    }
+
+    button[type="submit"]:hover {
+      background-color: var(--brand-blue-dark);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #111827;
+      color: #e5e7eb;
+      padding: 20px 16px 24px;
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: #ffffff !important; /* FIXED */
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer-left, .footer-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      align-items: center;
+    }
+
+    .footer-divider {
+      display: inline-block;
+      width: 1px;
+      height: 14px;
+      background-color: #4b5563;
+    }
+
+    a {
+      color: var(--brand-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding: 50px 16px 60px;
+      }
+
+      .hero-side {
+        margin-top: 8px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-brand-text {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .contact-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation -->
+  <div class="nav-wrapper">
+    <nav>
+      <div class="nav-left">
+        <img src="logo.png" alt="Fionas Roofing LLC logo">
+        <div class="nav-brand-text">
+          <span>Fionas Roofing LLC</span>
+          <span>Reliable Roofing • Central Florida</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="#contact">Book Inspection</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>Reliable Roofing You Can Trust</h1>
+        <p>
+          Fionas Roofing LLC provides honest, high‑quality roofing services across Central Florida —
+          from repairs to full replacements.
+        </p>
+        <div class="hero-cta-group">
+          <a class="hero-cta-primary" href="#contact">Schedule Your Roof Inspection</a>
+          <div class="hero-cta-secondary">
+            Or call us at <span>(407) 917‑1541</span>
+          </div>
+        </div>
+      </div>
+      <aside class="hero-side">
+        <h2>Why Homeowners Choose Us</h2>
+        <p><span class="label">Licensed & Insured:</span> Florida License: CCC1337193</p>
+        <p><span class="label">Service Area:</span> Central Florida</p>
+        <p><span class="label">Specialties:</span> Repairs, replacements, and inspections.</p>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="section-card">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Roof Repairs</h3>
+            <p>Fast, reliable repairs for leaks, storm damage, and general wear to protect your home.</p>
+          </div>
+          <div class="service-card">
+            <h3>New Roof Installation</h3>
+            <p>High‑quality materials installed by experienced professionals for long‑lasting performance.</p>
+          </div>
+          <div class="service-card">
+            <h3>Roof Inspections</h3>
+            <p>Thorough inspections to identify issues early and help you plan ahead with confidence.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-card">
+        <h2 class="section-title">About Fionas Roofing LLC</h2>
+        <p class="about-text">
+          Fionas Roofing LLC is a family‑owned roofing company serving Central Florida with a focus on
+          honesty, craftsmanship, and clear communication. We believe your roof is more than just a
+          structure — it protects your home, your family, and your peace of mind. Every project is
+          approached with care, transparency, and a commitment to doing the job right the first time.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-card">
+        <h2 class="section-title">Contact Us</h2>
+
+        <!-- Success Banner -->
+        <div id="success-banner" class="success-banner">
+          Thank you! Your inspection request has been sent. We’ll contact you shortly.
+        </div>
+
+        <div class="contact-layout">
+          <div class="contact-details">
+            <p><span class="label">Phone:</span> (407) 917‑1541</p>
+            <p><span class="label">Email:</span> <a href="mailto:fanuel.ulacia@fionasroofing.com">fanuel.ulacia@fionasroofing.com</a></p>
+            <p><span class="label">Service Area:</span> Central Florida</p>
+            <p style="margin-top:10px;">
+              Prefer to talk? Call us to discuss your roof, or use the form to request an inspection.
+            </p>
+          </div>
+          <div>
+            <form id="contact-form" action="https://formspree.io/f/meeeknob" method="POST">
+              
+              <!-- Honeypot spam protection -->
+              <input type="text" name="_gotcha" style="display:none">
+
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" required>
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required>
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel">
+              </div>
+              <div>
+                <label for="message">How can we help?</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+              </div>
+              <button type="submit">Submit Inspection Request</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span>© <span id="year"></span> Fionas Roofing LLC</span>
+        <span class="footer-divider"></span>
+        <span>Licensed & Insured • Florida License: CCC1337193</span>
+      </div>
+      <div class="footer-right">
+        <span>(407) 917‑1541</span>
+        <span class="footer-divider"></span>
+        <span><a href="mailto:fanuel.ulacia@fionasroofing.com">fanuel.ulacia@fionasroofing.com</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Handle form submission with success banner
+    const form = document.getElementById('contact-form');
+    const banner = document.getElementById('success-banner');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        banner.style.display = 'block';
+        form.reset();
+        window.scrollTo({ top: banner.offsetTop - 100, behavior: 'smooth' });
+      }
+    });
+  </script>
+
+</body>
+</html>
